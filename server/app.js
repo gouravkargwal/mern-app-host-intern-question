@@ -8,22 +8,19 @@ require("dotenv").config();
 require("./helper/init_mongodb");
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
 app.use(morgan("dev"));
 app.use(cors());
-app.use(express.static("./client/public"));
 app.use(express.json());
 app.use(express.text({ type: "text/html" }));
 app.use(express.urlencoded({ extended: false }));
+app.get("/home",(req,res)=>{
+  console.log("hit");
+  res.send("Welcome to HackerEarth!")
+})
 
 app.use("/", imageRouter);
 
-app.get("/home",(req,res)=>{
-  res.send("Welcome to HackerEarth!")
-})
+
 
 app.use((req, res, next) => {
   // const error = new Error("Not Found");
