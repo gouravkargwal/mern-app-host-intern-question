@@ -14,14 +14,9 @@ app.use(express.json());
 app.use(express.text({ type: "text/html" }));
 app.use(express.urlencoded({ extended: false }));
 app.get("/home",(req,res)=>{
-  console.log("hit");
-  res.send("Welcome to HackerEarth!")
+  res.send("Hello From Hackerearth!")
 })
-
 app.use("/", imageRouter);
-
-
-
 app.use((req, res, next) => {
   // const error = new Error("Not Found");
   // error.status = 404;
